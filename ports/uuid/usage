@@ -1,0 +1,11 @@
+uuid provides header-only UUID v4 generation and parsing.
+
+Usage:
+    find_package(uuid CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE uuid::uuid)
+
+Example:
+    #include <uuid/uuid.hpp>
+    auto id = uuid::uuid::v4();
+    printf("UUID: %s\n", id.to_string().c_str());
+    auto parsed = uuid::uuid::parse("550e8400-e29b-41d4-a716-446655440000");

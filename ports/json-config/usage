@@ -1,0 +1,12 @@
+json-config provides header-only JSON parsing with no external dependencies.
+
+Usage:
+    find_package(json-config CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE json-config::json-config)
+
+Example:
+    #include <json-config/json_config.hpp>
+    auto cfg = json::value::parse_file("config.json");
+    auto port = cfg["server"]["port"].as_integer();
+    auto host = cfg["server"]["host"].as_string();
+    printf("Server: %s:%lld\n", host.c_str(), (long long)port);

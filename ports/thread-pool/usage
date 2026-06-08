@@ -1,0 +1,11 @@
+thread-pool provides header-only thread pool for parallel task execution.
+
+Usage:
+    find_package(thread-pool CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE thread-pool::thread-pool)
+
+Example:
+    #include <thread-pool/thread_pool.hpp>
+    tp::thread_pool pool(4);
+    auto future = pool.enqueue([](int a, int b) { return a + b; }, 1, 2);
+    int result = future.get();

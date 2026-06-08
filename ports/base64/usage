@@ -1,0 +1,10 @@
+base64 provides header-only Base64 encoding and decoding.
+
+Usage:
+    find_package(base64 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE base64::base64)
+
+Example:
+    #include <base64/base64.hpp>
+    auto encoded = base64::encode("hello world");
+    auto decoded = base64::decode_to_string(encoded);

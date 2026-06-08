@@ -59,6 +59,30 @@
       "versions": [
         "0.18.1"
       ]
+    },
+    "thread-pool": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "uuid": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "base64": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "json-config": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
     }
   }
 }
