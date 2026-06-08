@@ -127,10 +127,14 @@ inline std::vector<std::string> list_directories(std::string_view dir) {
 
 inline void walk(std::string_view dir, std::function<void(const std::string&)> callback, bool recursive = true) {
     if (!is_directory(dir)) return;
-    auto iter = recursive ? fs::recursive_directory_iterator(fs::path(dir))
-                          : fs::directory_iterator(fs::path(dir));
-    for (auto& entry : iter) {
-        callback(entry.path().string());
+    if (recursive) {
+        for (auto& entry : fs::recursive_directory_iterator(fs::path(dir))) {
+            callback(entry.path().string());
+        }
+    } else {
+        for (auto& entry : fs::directory_iterator(fs::path(dir))) {
+            callback(entry.path().string());
+        }
     }
 }
 

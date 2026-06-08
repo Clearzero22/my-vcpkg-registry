@@ -6,9 +6,9 @@ target_include_directories(binary-serializer INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
-target_compile_features(binary-serializer INTERFACE cxx_std_17)
+target_compile_features(binary-serializer INTERFACE cxx_std_20)
 
 include(GNUInstallDirs)
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(TARGETS binary-serializer EXPORT binary-serializer-config)
-install(EXPORT binary-serializer-config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/binary-serializer)
+install(EXPORT binary-serializer-config NAMESPACE binary-serializer:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/binary-serializer)

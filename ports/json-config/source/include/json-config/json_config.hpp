@@ -17,15 +17,15 @@ enum class value_type { null, boolean, integer, real, string, array, object };
 
 class value {
 public:
-    value() : type_(value_type::null), integer_(0) {}
-    value(nullptr_t) : type_(value_type::null), integer_(0) {}
-    value(bool b) : type_(value_type::boolean), boolean_(b), integer_(0) {}
-    value(std::int64_t i) : type_(value_type::integer), integer_(i) {}
-    value(double d) : type_(value_type::real), real_(d), integer_(0) {}
-    value(const char* s) : type_(value_type::string), string_(new std::string(s)), integer_(0) {}
-    value(std::string s) : type_(value_type::string), string_(new std::string(std::move(s))), integer_(0) {}
-    value(std::string_view s) : type_(value_type::string), string_(new std::string(s)), integer_(0) {}
-    value(std::initializer_list<value> list) : type_(value_type::array), array_(new std::vector<value>(list)), integer_(0) {}
+    value() : type_(value_type::null) { integer_ = 0; }
+    value(nullptr_t) : type_(value_type::null) { integer_ = 0; }
+    value(bool b) : type_(value_type::boolean) { boolean_ = b; }
+    value(std::int64_t i) : type_(value_type::integer) { integer_ = i; }
+    value(double d) : type_(value_type::real) { real_ = d; }
+    value(const char* s) : type_(value_type::string) { string_ = new std::string(s); }
+    value(std::string s) : type_(value_type::string) { string_ = new std::string(std::move(s)); }
+    value(std::string_view s) : type_(value_type::string) { string_ = new std::string(s); }
+    value(std::initializer_list<value> list) : type_(value_type::array) { array_ = new std::vector<value>(list); }
 
     value(const value& other)
         : type_(other.type_), integer_(other.integer_) {
@@ -122,7 +122,8 @@ public:
     }
 
     static value parse_file(std::string_view path) {
-        std::ifstream file(std::string(path));
+        auto fpath = std::string(path);
+        std::ifstream file(fpath);
         if (!file) return value{};
         std::stringstream ss;
         ss << file.rdbuf();

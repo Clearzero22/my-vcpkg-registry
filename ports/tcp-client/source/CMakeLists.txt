@@ -19,4 +19,4 @@ install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(TARGETS tcp-client EXPORT tcp-client-config
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
-install(EXPORT tcp-client-config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/tcp-client)
+install(EXPORT tcp-client-config NAMESPACE tcp-client:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/tcp-client)

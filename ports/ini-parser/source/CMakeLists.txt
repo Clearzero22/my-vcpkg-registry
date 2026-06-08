@@ -6,9 +6,9 @@ target_include_directories(ini-parser INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
-target_compile_features(ini-parser INTERFACE cxx_std_17)
+target_compile_features(ini-parser INTERFACE cxx_std_20)
 
 include(GNUInstallDirs)
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(TARGETS ini-parser EXPORT ini-parser-config)
-install(EXPORT ini-parser-config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ini-parser)
+install(EXPORT ini-parser-config NAMESPACE ini-parser:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ini-parser)

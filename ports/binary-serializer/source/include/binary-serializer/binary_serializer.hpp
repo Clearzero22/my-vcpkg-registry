@@ -10,9 +10,18 @@
 #include <string>
 #include <tuple>
 #include <type_traits>
+#include <cstdint>
 #include <vector>
 
 namespace bin {
+
+template<std::integral T>
+constexpr T byteswap(T value) noexcept {
+    if constexpr (sizeof(T) == 1) return value;
+    if constexpr (sizeof(T) == 2) return static_cast<T>(__builtin_bswap16(static_cast<uint16_t>(value)));
+    if constexpr (sizeof(T) == 4) return static_cast<T>(__builtin_bswap32(static_cast<uint32_t>(value)));
+    if constexpr (sizeof(T) == 8) return static_cast<T>(__builtin_bswap64(static_cast<uint64_t>(value)));
+}
 
 class writer {
 public:
@@ -25,7 +34,7 @@ public:
     void write(T value) {
         if constexpr (std::is_arithmetic_v<T>) {
             if constexpr (std::endian::native == std::endian::big) {
-                value = std::byteswap(value);
+                value = byteswap(value);
             }
             auto* ptr = reinterpret_cast<const std::byte*>(&value);
             buffer_.insert(buffer_.end(), ptr, ptr + sizeof(T));
@@ -97,7 +106,7 @@ public:
         if constexpr (std::is_arithmetic_v<T>) {
             if (!read_raw(&value, sizeof(T))) return std::nullopt;
             if constexpr (std::endian::native == std::endian::big) {
-                value = std::byteswap(value);
+                value = byteswap(value);
             }
             return value;
         } else if constexpr (std::is_same_v<T, std::string>) {

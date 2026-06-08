@@ -6,9 +6,9 @@ target_include_directories(base64 INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
-target_compile_features(base64 INTERFACE cxx_std_17)
+target_compile_features(base64 INTERFACE cxx_std_20)
 
 include(GNUInstallDirs)
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(TARGETS base64 EXPORT base64-config)
-install(EXPORT base64-config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/base64)
+install(EXPORT base64-config NAMESPACE base64:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/base64)

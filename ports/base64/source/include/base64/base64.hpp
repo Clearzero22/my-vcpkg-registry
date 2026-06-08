@@ -56,33 +56,38 @@ inline std::optional<std::vector<std::byte>> decode(std::string_view encoded) {
     if (encoded.empty()) return std::vector<std::byte>{};
     if (encoded.size() % 4 != 0) return std::nullopt;
 
-    auto decode_char = [](char c) -> std::optional<std::uint8_t> {
-        if (c >= 'A' && c <= 'Z') return static_cast<std::uint8_t>(c - 'A');
-        if (c >= 'a' && c <= 'z') return static_cast<std::uint8_t>(c - 'a' + 26);
-        if (c >= '0' && c <= '9') return static_cast<std::uint8_t>(c - '0' + 52);
+    auto val = [](char c) -> int {
+        if (c >= 'A' && c <= 'Z') return c - 'A';
+        if (c >= 'a' && c <= 'z') return c - 'a' + 26;
+        if (c >= '0' && c <= '9') return c - '0' + 52;
         if (c == '+') return 62;
-        if (c == '/') return 63;
-        return std::nullopt;
+        return 63;
     };
 
     auto padding = (encoded[encoded.size() - 1] == '=') +
                    (encoded.size() > 1 && encoded[encoded.size() - 2] == '=');
+    if (padding > 2) return std::nullopt;
+
     std::vector<std::byte> result;
     result.reserve((encoded.size() / 4) * 3 - padding);
 
-    for (std::size_t i = 0; i < encoded.size() - padding * 2; i += 4) {
-        auto c0 = decode_char(encoded[i]);
-        auto c1 = decode_char(encoded[i + 1]);
-        auto c2 = (i + 2 < encoded.size() - padding * 2) ? decode_char(encoded[i + 2]) : std::optional<std::uint8_t>(0);
-        auto c3 = (i + 3 < encoded.size() - padding * 2) ? decode_char(encoded[i + 3]) : std::optional<std::uint8_t>(0);
-        if (!c0 || !c1) return std::nullopt;
-        auto n = (static_cast<std::uint32_t>(*c0) << 18) |
-                 (static_cast<std::uint32_t>(*c1) << 12) |
-                 (static_cast<std::uint32_t>(c2.value_or(0)) << 6) |
-                 static_cast<std::uint32_t>(c3.value_or(0));
+    for (std::size_t i = 0; i < encoded.size(); i += 4) {
+        auto n = (static_cast<std::uint32_t>(val(encoded[i])) << 18) |
+                 (static_cast<std::uint32_t>(val(encoded[i + 1])) << 12);
+        auto out = 3u;
+        if (encoded[i + 2] == '=') {
+            out = 1;
+        } else {
+            n |= static_cast<std::uint32_t>(val(encoded[i + 2])) << 6;
+        }
+        if (encoded[i + 3] == '=') {
+            out = (out == 1) ? 1 : 2;
+        } else {
+            n |= static_cast<std::uint32_t>(val(encoded[i + 3]));
+        }
         result.push_back(std::byte((n >> 16) & 0xff));
-        if (c2) result.push_back(std::byte((n >> 8) & 0xff));
-        if (c3) result.push_back(std::byte(n & 0xff));
+        if (out >= 2) result.push_back(std::byte((n >> 8) & 0xff));
+        if (out >= 3) result.push_back(std::byte(n & 0xff));
     }
     return result;
 }

@@ -8,11 +8,11 @@ target_include_directories(simple-logger PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
-target_compile_features(simple-logger PUBLIC cxx_std_17)
+target_compile_features(simple-logger PUBLIC cxx_std_20)
 
 include(GNUInstallDirs)
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(TARGETS simple-logger EXPORT simple-logger-config
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
-install(EXPORT simple-logger-config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/simple-logger)
+install(EXPORT simple-logger-config NAMESPACE simple-logger:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/simple-logger)

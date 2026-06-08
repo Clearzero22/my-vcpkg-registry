@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <filesystem>
 #include <fstream>
 #include <map>
 #include <optional>
@@ -15,7 +16,8 @@ namespace ini {
 class parser {
 public:
     bool load(std::string_view path) {
-        std::ifstream file(std::filesystem::path(path));
+        auto filepath = std::filesystem::path(path);
+        std::ifstream file(filepath);
         if (!file) return false;
         std::stringstream ss;
         ss << file.rdbuf();
@@ -25,7 +27,8 @@ public:
     bool load_from_string(std::string_view content) {
         data_.clear();
         std::string current_section = "";
-        std::istringstream stream(std::string(content));
+        std::string content_str(content);
+        std::istringstream stream(content_str);
         std::string line;
         int line_num = 0;
         while (std::getline(stream, line)) {
@@ -63,7 +66,8 @@ public:
     }
 
     bool save(std::string_view path) {
-        std::ofstream file(std::filesystem::path(path));
+        auto filepath = std::string(path);
+        std::ofstream file(filepath);
         if (!file) return false;
         for (auto& [section, kv] : data_) {
             if (section.empty()) {

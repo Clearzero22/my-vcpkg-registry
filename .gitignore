@@ -1,0 +1,5 @@
+# Build artifacts
+tests/build/
+tests/vcpkg_installed/
+tests/*.log
+tests/minimal.cpp
