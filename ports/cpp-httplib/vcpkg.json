@@ -1,0 +1,24 @@
+{
+  "name": "cpp-httplib",
+  "version": "0.18.1",
+  "description": "A C++ header-only HTTP/HTTPS server and client library. Provides both client and server API with SSL support.",
+  "homepage": "https://github.com/yhirose/cpp-httplib",
+  "license": "MIT",
+  "supports": "!(windows & uwp)",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ],
+  "features": {
+    "ssl": {
+      "description": "Enable HTTPS/SSL support via OpenSSL",
+      "dependencies": ["openssl"]
+    }
+  }
+}

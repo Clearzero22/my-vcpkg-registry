@@ -53,6 +53,12 @@
       "versions": [
         "1.0.0"
       ]
+    },
+    "cpp-httplib": {
+      "baseline": "0.18.1",
+      "versions": [
+        "0.18.1"
+      ]
     }
   }
 }

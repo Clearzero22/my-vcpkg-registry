@@ -1,0 +1,31 @@
+cpp-httplib provides a header-only HTTP/HTTPS client and server library.
+
+Usage:
+    find_package(cpp-httplib CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE cpp-httplib)
+
+For SSL support:
+    find_package(cpp-httplib CONFIG REQUIRED COMPONENTS ssl)
+    target_link_libraries(main PRIVATE cpp-httplib)
+
+Example HTTP Server:
+    #include <httplib.h>
+    httplib::Server svr;
+    svr.Get("/hi", [](const httplib::Request& req, httplib::Response& res) {
+        res.set_content("Hello World!", "text/plain");
+    });
+    svr.listen("0.0.0.0", 8080);
+
+Example HTTP Client:
+    #include <httplib.h>
+    httplib::Client cli("http://example.com");
+    auto res = cli.Get("/");
+    printf("%s\n", res->body.c_str());
+
+For HTTPS/SSL server:
+    #include <httplib.h>
+    httplib::SSLServer svr("/path/to/cert.pem", "/path/to/key.pem");
+    svr.listen("0.0.0.0", 443);
+
+Install with SSL:
+    vcpkg install cpp-httplib[ssl]
