@@ -1,0 +1,14 @@
+tcp-client provides a cross-platform TCP socket client.
+
+Usage:
+    find_package(tcp-client CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE tcp-client::tcp-client)
+
+Example:
+    #include <tcp-client/tcp_client.hpp>
+    net::tcp_client client;
+    if (client.connect("example.com", 80)) {
+        client.send("GET / HTTP/1.1\r\nHost: example.com\r\n\r\n");
+        std::array<std::byte, 4096> buf;
+        int n = client.receive(buf);
+    }

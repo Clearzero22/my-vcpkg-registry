@@ -1,0 +1,13 @@
+ini-parser provides header-only INI file parsing.
+
+Usage:
+    find_package(ini-parser CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE ini-parser::ini-parser)
+
+Example:
+    #include <ini-parser/ini_parser.hpp>
+    ini::parser cfg;
+    cfg.load("config.ini");
+    auto val = cfg.get("section", "key");
+    cfg.set("section", "key", "new_value");
+    cfg.save("config.ini");

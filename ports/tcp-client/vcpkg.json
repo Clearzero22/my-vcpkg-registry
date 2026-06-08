@@ -1,0 +1,18 @@
+{
+  "name": "tcp-client",
+  "version": "1.0.0",
+  "description": "A cross-platform C++ TCP socket client library supporting blocking/non-blocking connect, send, receive with timeout support (Win32 + POSIX)",
+  "homepage": "https://github.com/yourusername/my-vcpkg-registry",
+  "license": "MIT",
+  "supports": "!(windows & uwp) | (windows & !uwp)",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}

@@ -5,6 +5,54 @@
       "versions": [
         "1.0.0"
       ]
+    },
+    "string-utils": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "file-utils": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "crc-hash": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "binary-serializer": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "object-pool": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "ini-parser": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "simple-logger": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
+    },
+    "tcp-client": {
+      "baseline": "1.0.0",
+      "versions": [
+        "1.0.0"
+      ]
     }
   }
 }

@@ -1,0 +1,12 @@
+string-utils provides header-only string manipulation utilities.
+
+Usage:
+    find_package(string-utils CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE string-utils::string-utils)
+
+Example:
+    #include <string-utils/string_utils.hpp>
+    auto parts = str::split("a,b,c", ",");
+    auto joined = str::join(parts, ", ");
+    auto hex = str::to_hex(data);
+    auto lower = str::to_lower("HELLO");

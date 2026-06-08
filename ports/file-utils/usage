@@ -1,0 +1,11 @@
+file-utils provides header-only filesystem utilities.
+
+Usage:
+    find_package(file-utils CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE file-utils::file-utils)
+
+Example:
+    #include <file-utils/file_utils.hpp>
+    auto content = file::read_all("config.json");
+    file::write_all("output.txt", "hello");
+    auto files = file::list_files("./src");

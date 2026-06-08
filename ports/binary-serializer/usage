@@ -1,0 +1,16 @@
+binary-serializer provides header-only binary serialization.
+
+Usage:
+    find_package(binary-serializer CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE binary-serializer::binary-serializer)
+
+Example:
+    #include <binary-serializer/binary_serializer.hpp>
+    bin::writer w;
+    w.write(42);
+    w.write(std::string("hello"));
+    w.write(std::vector<int>{1, 2, 3});
+
+    bin::reader r(w.data());
+    auto x = r.read<int>();
+    auto s = r.read<std::string>();

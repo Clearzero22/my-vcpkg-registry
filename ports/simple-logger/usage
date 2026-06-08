@@ -1,0 +1,12 @@
+simple-logger provides a lightweight logging library.
+
+Usage:
+    find_package(simple-logger CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE simple-logger::simple-logger)
+
+Example:
+    #include <simple-logger/logger.hpp>
+    simple::logger::instance().add_console_sink();
+    simple::logger::instance().add_file_sink("app.log");
+    LOG_INFO("Main", "Application started");
+    LOG_ERROR("Network", "Connection failed");

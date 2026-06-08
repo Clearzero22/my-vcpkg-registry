@@ -1,0 +1,11 @@
+object-pool provides header-only generic object pooling.
+
+Usage:
+    find_package(object-pool CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE object-pool::object-pool)
+
+Example:
+    #include <object-pool/object_pool.hpp>
+    pool::object_pool<MyClass> my_pool(16, true);
+    auto obj = my_pool.acquire();
+    // obj is automatically returned to pool when shared_ptr refcount reaches 0

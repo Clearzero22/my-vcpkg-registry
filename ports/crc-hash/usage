@@ -1,0 +1,12 @@
+crc-hash provides header-only CRC32 and MD5 hash functions.
+
+Usage:
+    find_package(crc-hash CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE crc-hash::crc-hash)
+
+Example:
+    #include <crc-hash/crc32.hpp>
+    #include <crc-hash/md5.hpp>
+    auto c = hash::crc32("hello");
+    auto m = hash::md5("hello");
+    auto cf = hash::crc32_file("file.bin");

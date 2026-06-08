@@ -1,0 +1,18 @@
+{
+  "name": "simple-logger",
+  "version": "1.0.0",
+  "description": "A lightweight C++ logging library with log levels, console output, file output with rotation, and timestamp formatting",
+  "homepage": "https://github.com/yourusername/my-vcpkg-registry",
+  "license": "MIT",
+  "supports": "!(windows & uwp)",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}

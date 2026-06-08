@@ -1,0 +1,18 @@
+{
+  "name": "binary-serializer",
+  "version": "1.0.0",
+  "description": "A header-only C++ binary serialization library supporting integers, floats, strings, vectors, maps, and tuples with little-endian output",
+  "homepage": "https://github.com/yourusername/my-vcpkg-registry",
+  "license": "MIT",
+  "supports": "!(windows & uwp)",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}
