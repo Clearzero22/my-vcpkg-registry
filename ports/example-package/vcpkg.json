@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "example-package",
+  "version": "1.0.0",
+  "description": "A custom example package for demonstration",
+  "homepage": "https://github.com/yourusername/example-package",
+  "license": "MIT",
+  "supports": "!windows | (windows & !uwp)",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ],
+  "features": {
+    "feature1": {
+      "description": "Enable optional feature 1",
+      "dependencies": [
+        "some-other-package"
+      ]
+    },
+    "feature2": {
+      "description": "Enable optional feature 2"
+    }
+  }
+}

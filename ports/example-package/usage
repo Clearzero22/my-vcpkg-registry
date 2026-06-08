@@ -1,0 +1,48 @@
+# Example Package - Usage Guide
+
+## Basic Usage
+
+### CMake Integration
+
+Add to your `CMakeLists.txt`:
+
+```cmake
+find_package(example-package CONFIG REQUIRED)
+target_link_libraries(your_target PRIVATE example-package::example-package)
+```
+
+### Features
+
+Enable optional features:
+
+```cmake
+# Feature 1 (depends on some-other-package)
+vcpkg install example-package[feature1]:x64-windows
+
+# Feature 2
+vcpkg install example-package[feature2]:x64-windows
+
+# Multiple features
+vcpkg install example-package[feature1,feature2]:x64-windows
+```
+
+## Example C++ Code
+
+```cpp
+#include <example-package/example.hpp>
+
+int main() {
+    example::HelloWorld();
+    return 0;
+}
+```
+
+## Building Your Project
+
+With vcpkg toolchain:
+
+```bash
+cmake -B build -S . \
+    -DCMAKE_TOOLCHAIN_FILE=/d/code_tools/c_plus_plus_tools/vcpkg/vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake --build build
+```
