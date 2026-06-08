@@ -6,9 +6,9 @@
 
 ---
 
-## 🚀 方式 1: 使用项目配置文件（推荐）
+# 使用 Git 仓库（推荐）
 
-在你的 CMake 项目根目录创建 `vcpkg-configuration.json`：
+在你的 `vcpkg-configuration.json` 中：
 
 ```json
 {
@@ -20,8 +20,8 @@
   },
   "registries": [
     {
-      "kind": "filesystem",
-      "path": "C:\\Users\\admin\\my-vcpkg-registry",
+      "kind": "git",
+      "repository": "https://github.com/Clearzero22/my-vcpkg-registry",
       "baseline": "a1b2c3d4e5f6g7h8i9j0"
     }
   ]
